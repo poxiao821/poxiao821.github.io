@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系 - 破晓</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">破晓</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="experience.html">工作/项目</a></li>
+                    <li><a href="skills.html">技能</a></li>
+                    <li><a href="contact.html">联系</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="contact">
+        <div class="container">
+            <h1>联系我</h1>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h2>发送消息</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">发送</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h2>联系方式</h2>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-phone"></i> 18390032814</li>
+                        <li><i class="fas fa-envelope"></i> lilh99@163.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳、广州</li>
+                    </ul>
+                    <h3>关于我</h3>
+                    <p>我是破晓，一名大模型应用开发工程师，拥有丰富的Python开发经验和大模型部署经验。如果您对我的技能和经验感兴趣，或者有任何合作机会，欢迎随时联系我。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>破晓</h3>
+                    <p>大模型应用开发工程师</p>
+                    <p>深圳、广州</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-phone"></i> 18390032814</p>
+                    <p><i class="fas fa-envelope"></i> lilh99@163.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 破晓个人网站. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 联系表单提交处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // 这里可以添加表单提交逻辑
+            alert('消息已发送，我会尽快回复您！');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

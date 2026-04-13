@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网络设备智能巡检系统</title>
+    <style>
+        /* 全局统一样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:"Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        /* 主容器统一 */
+        .main {
+            max-width:800px;
+            width: 100%;
+            margin:0 auto;
+            background:#fff;
+            border-radius:16px;
+            box-shadow:0 2px 20px rgba(0,0,0,0.08);
+            overflow:hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 头部统一 */
+        .header{
+            padding:16px 20px;
+            background:#2c6eef;
+            color:white;
+            font-size:18px;
+            font-weight:500;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        /* 返回按钮 */
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* 聊天区域统一 */
+        .chat {
+            height:500px;
+            padding:24px;
+            overflow-y:auto;
+            background:#fcfcfc;
+            display:flex;
+            flex-direction:column;
+            gap:16px;
+        }
+        .chat::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+        /* 消息气泡统一 */
+        .msg{
+            max-width:85%;
+            padding:12px 16px;
+            border-radius:14px;
+            line-height:1.7;
+            font-size:15px;
+            word-break: break-all;
+        }
+        .user{
+            align-self:flex-end;
+            background:#2c6eef;
+            color:white;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .ai{
+            align-self:flex-start;
+            background:#f1f5ff;
+            color:#333;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        /* 技术栈区域统一 */
+        .stack{
+            padding:20px 24px;
+            background:#ffffff;
+            border-top:1px solid #eee;
+            margin: 0;
+            box-shadow:0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid #2c6eef;
+        }
+        .stack h3{
+            color:#2c6eef;
+            margin-bottom:12px;
+            font-size:16px;
+            font-weight: bold;
+        }
+        .stack ul{
+            margin-left:20px;
+            line-height:1.9;
+            font-size:14px;
+            color:#333;
+            list-style-position: inside;
+        }
+        .stack ul li {
+            margin-bottom: 8px;
+        }
+        /* 标签样式 */
+        .db-tag {
+            display: inline-block;
+            background: #e7f5ff;
+            color: #1976d2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+
+        .api-tag {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #0284c4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+
+        .success {
+            color: #059669;
+            font-weight: 500;
+        }
+
+        .warning {
+            color: #d97706;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <button class="back-btn" onclick="window.location.href='experience.html'">返回项目经验</button>
+            网络设备智能巡检系统
+        </div>
+
+        <div class="chat" id="chat-container">
+            <!-- 消息将通过JavaScript动态生成 -->
+        </div>
+
+        <!-- 技术栈区域（统一样式） -->
+        <div class="stack">
+            <h3>📦 项目技术栈 & 架构</h3>
+            <ul>
+                <li><strong>后端语言</strong>：Python</li>
+                <li><strong>Web框架</strong>：Flask（提供HTTP接口服务）</li>
+                <li><strong>数据库</strong>：MySQL（存储巡检任务、步骤、设备状态、结果）</li>
+                <li><strong>数据流程</strong>：后端巡检 → 调用接口 → 写入MySQL</li>
+                <li><strong>智能交互</strong>：LangChain + LangGraph + MCP 工具</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+    // 对话数据
+    const messages = [
+        { type: 'user', content: '请对A站点设备执行网络巡检' },
+        { type: 'ai', content: '接受请求，开始网络设备巡检流程' },
+        { type: 'ai', content: '识别A站点设备类型和位置信息' },
+        { type: 'ai', content: '建立与设备的连接，验证网络可达性' },
+        { type: 'ai', content: '检查设备硬件状态：电源模块、风扇、温度传感器' },
+        { type: 'ai', content: '检查设备接口状态：链路状态、带宽利用率、错误包率' },
+        { type: 'ai', content: '检查设备软件版本：操作系统版本、补丁状态' },
+        { type: 'ai', content: '收集设备性能数据：CPU利用率、内存使用率、接口流量' },
+        { type: 'ai', content: '分析巡检数据，生成巡检报告' },
+        { type: 'ai', content: '将巡检结果保存至数据库' },
+        { type: 'ai', content: '巡检完成，所有设备状态正常' }
+    ];
+
+    // 逐字生成消息的函数
+    function typeWriter(element, text, index = 0, speed = 30) {
+        if (index < text.length) {
+            // 处理HTML标签
+            if (text.charAt(index) === '<') {
+                // 找到标签结束位置
+                const endIndex = text.indexOf('>', index);
+                if (endIndex !== -1) {
+                    element.innerHTML += text.substring(index, endIndex + 1);
+                    index = endIndex + 1;
+                } else {
+                    element.innerHTML += text.charAt(index);
+                    index++;
+                }
+            } else {
+                element.innerHTML += text.charAt(index);
+                index++;
+            }
+            setTimeout(() => typeWriter(element, text, index, speed), speed);
+        }
+    }
+
+    // 显示消息
+    function displayMessage(message, delay) {
+        setTimeout(() => {
+            const chatContainer = document.getElementById('chat-container');
+            const messageElement = document.createElement('div');
+            messageElement.className = `msg ${message.type}`;
+            chatContainer.appendChild(messageElement);
+            
+            // 逐字生成消息内容
+            typeWriter(messageElement, message.content);
+            
+            // 滚动到底部
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, delay);
+    }
+
+    // 初始化对话
+    function initChat() {
+        let delay = 0;
+        messages.forEach((message, index) => {
+            // 为AI消息添加更长的延迟，模拟思考时间
+            if (message.type === 'ai' && index > 0) {
+                delay += 500;
+            }
+            displayMessage(message, delay);
+            delay += 800;
+        });
+    }
+
+    // 页面加载完成后初始化对话
+    window.onload = initChat;
+    </script>
+</body>
+</html>

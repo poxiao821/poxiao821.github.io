@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NL2SQL 系统效果演示</title>
+    <style>
+        /* 全局统一样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:"Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        /* 主容器统一 */
+        .main {
+            max-width:800px;
+            width: 100%;
+            margin:0 auto;
+            background:#fff;
+            border-radius:16px;
+            box-shadow:0 2px 20px rgba(0,0,0,0.08);
+            overflow:hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 头部统一 */
+        .header{
+            padding:16px 20px;
+            background:#2c6eef;
+            color:white;
+            font-size:18px;
+            font-weight:500;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        /* 返回按钮 */
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* 聊天区域统一 */
+        .chat {
+            height:500px;
+            padding:24px;
+            overflow-y:auto;
+            background:#fcfcfc;
+            display:flex;
+            flex-direction:column;
+            gap:16px;
+        }
+        .chat::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+        /* 消息气泡统一 */
+        .msg{
+            max-width:85%;
+            padding:12px 16px;
+            border-radius:14px;
+            line-height:1.7;
+            font-size:15px;
+            word-break: break-all;
+        }
+        .user{
+            align-self:flex-end;
+            background:#2c6eef;
+            color:white;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .ai{
+            align-self:flex-start;
+            background:#f1f5ff;
+            color:#333;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        /* SQL代码块样式 */
+        .sql-block {
+            background: #2d2d2d;
+            color: #dcdcaa;
+            padding: 14px;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            margin: 10px 0;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        /* 图表样式 */
+        .chart-block {
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            padding: 24px 18px 42px;
+            text-align: center;
+            margin-top: 12px;
+            position: relative;
+        }
+        .fake-bar {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            align-items: flex-end;
+            height: 150px;
+            margin-top: 18px;
+        }
+        .bar-item {
+            width: 50px;
+            background: #2c6eef; /* 统一主色 */
+            border-radius: 6px 6px 0 0;
+            position: relative;
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #333;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .chart-title {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+        /* 技术栈区域统一 */
+        .stack{
+            padding:20px 24px;
+            background:#ffffff;
+            border-top:1px solid #eee;
+            margin: 0;
+            box-shadow:0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid #2c6eef;
+        }
+        .stack h3{
+            color:#2c6eef;
+            margin-bottom:12px;
+            font-size:16px;
+            font-weight: bold;
+        }
+        .stack ul{
+            margin-left:20px;
+            line-height:1.9;
+            font-size:14px;
+            color:#333;
+            list-style-position: inside;
+        }
+        .stack ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <button class="back-btn" onclick="window.location.href='experience.html'">返回项目经验</button>
+            NL2SQL 智能数据助手
+        </div>
+
+        <div class="chat" id="chat-container">
+            <!-- 消息将通过JavaScript动态生成 -->
+        </div>
+
+        <!-- 技术栈区域（统一样式） -->
+        <div class="stack">
+            <h3>📦 项目技术栈说明</h3>
+            <ul>
+                <li>后端服务基于 <strong>Python + Flask</strong> 架构实现，提供HTTP接口服务</li>
+                <li>企业内部部署 <strong>DeepSeek-V3</strong> 大模型，负责SQL生成推理</li>
+                <li>使用 <strong>华为云LMS向量数据库</strong> 存储与检索业务知识库</li>
+                <li>采用 <strong>Bert-Chinese</strong> 模型实现文本向量化表示</li>
+                <li>基于 <strong>LangChain & Vanna</strong> 框架构建NL2SQL核心流程</li>
+                <li>使用 <strong>Pandas</strong> 实现数据管理与本地持久化存储</li>
+                <li>集成向量检索、大模型调用、SQL执行、图表展示全流程能力</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+    // 对话数据
+    const messages = [
+        { type: 'user', content: '帮我查一下2025年各部门的销售总额，按金额从高到低排序' },
+        { 
+            type: 'ai', 
+            content: '已为您生成并执行SQL语句：',
+            sql: 'SELECT department, SUM(amount) AS total_sales\nFROM sales_data\nWHERE sale_year = 2025\nGROUP BY department\nORDER BY total_sales DESC;',
+            chart: true
+        }
+    ];
+
+    // 逐字生成消息的函数
+    function typeWriter(element, text, index = 0, speed = 30) {
+        if (index < text.length) {
+            element.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(() => typeWriter(element, text, index, speed), speed);
+        } else {
+            // 如果是AI消息且包含SQL或图表，在文本生成完成后添加
+            const message = messages.find(msg => msg.content === text);
+            if (message && message.type === 'ai') {
+                if (message.sql) {
+                    // 延迟显示SQL语句
+                    setTimeout(() => {
+                        const sqlBlock = document.createElement('div');
+                        sqlBlock.className = 'sql-block';
+                        sqlBlock.textContent = message.sql;
+                        element.appendChild(sqlBlock);
+                        // 滚动到底部
+                        const chatContainer = document.getElementById('chat-container');
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                        
+                        // 延迟显示图表
+                        if (message.chart) {
+                            setTimeout(() => {
+                                const chartBlock = document.createElement('div');
+                                chartBlock.className = 'chart-block';
+                                chartBlock.innerHTML = `
+                                    <div class="chart-title">2025年各部门销售额柱状图</div>
+                                    <div class="fake-bar">
+                                        <div class="bar-item" style="height: 130px">
+                                            <div class="bar-label">市场部</div>
+                                        </div>
+                                        <div class="bar-item" style="height: 115px">
+                                            <div class="bar-label">销售部</div>
+                                        </div>
+                                        <div class="bar-item" style="height: 90px">
+                                            <div class="bar-label">研发部</div>
+                                        </div>
+                                        <div class="bar-item" style="height: 60px">
+                                            <div class="bar-label">行政部</div>
+                                        </div>
+                                    </div>
+                                `;
+                                element.appendChild(chartBlock);
+                                // 滚动到底部
+                                chatContainer.scrollTop = chatContainer.scrollHeight;
+                            }, 1500);
+                        }
+                    }, 1000);
+                }
+            }
+        }
+    }
+
+    // 显示消息
+    function displayMessage(message, delay) {
+        setTimeout(() => {
+            const chatContainer = document.getElementById('chat-container');
+            const messageElement = document.createElement('div');
+            messageElement.className = `msg ${message.type}`;
+            chatContainer.appendChild(messageElement);
+            
+            // 逐字生成消息内容
+            typeWriter(messageElement, message.content);
+            
+            // 滚动到底部
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, delay);
+    }
+
+    // 初始化对话
+    function initChat() {
+        let delay = 0;
+        messages.forEach((message, index) => {
+            // 为AI消息添加更长的延迟，模拟思考时间
+            if (message.type === 'ai' && index > 0) {
+                delay += 1000;
+            }
+            displayMessage(message, delay);
+            delay += 1500;
+        });
+    }
+
+    // 页面加载完成后初始化对话
+    window.onload = initChat;
+    </script>
+</body>
+</html>

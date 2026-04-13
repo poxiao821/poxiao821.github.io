@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能 - 破晓</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">破晓</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="experience.html">工作/项目</a></li>
+                    <li><a href="skills.html">技能</a></li>
+                    <li><a href="contact.html">联系</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="skills">
+        <div class="container">
+            <h1>技能展示</h1>
+            <div class="skills-content">
+                <div class="skills-chart">
+                    <canvas id="skillsRadarChart"></canvas>
+                </div>
+                <div class="skills-details">
+                    <h2>技能详情</h2>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> 编程语言</h3>
+                        <ul>
+                            <li><strong>Python：</strong>三年开发经验，精通PyTorch、numpy、matplotlib等框架</li>
+                            <li><strong>Java、C++：</strong>具备简单代码调试、开发能力</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cogs"></i> 框架与工具</h3>
+                        <ul>
+                            <li><strong>LangChain/LangGraph：</strong>可独立完成大模型Agent、多智能体协同、MCP工具调用等复杂系统开发</li>
+                            <li><strong>SQL：</strong>熟练掌握数据处理</li>
+                            <li><strong>Docker/Linux：</strong>熟悉容器化部署和操作系统</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-server"></i> 部署与运维</h3>
+                        <ul>
+                            <li><strong>华为昇腾NPU：</strong>拥有部署经验，可完成CANN镜像构建</li>
+                            <li><strong>vllm-ascend：</strong>可完成推理部署</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-magic"></i> 其他技能</h3>
+                        <ul>
+                            <li><strong>Prompt工程：</strong>掌握Few-Shot/CoT等技巧，能显著提升模型输出准确率</li>
+                            <li><strong>英语：</strong>英语四级，可流畅阅读英文技术文档与学术论文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>破晓</h3>
+                    <p>大模型应用开发工程师</p>
+                    <p>深圳、广州</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-phone"></i> 18390032814</p>
+                    <p><i class="fas fa-envelope"></i> lilh99@163.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 破晓个人网站. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 技能雷达图
+        const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+        const skillsRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Python', 'PyTorch', 'LangChain', 'Docker', 'Linux', 'SQL', 'Prompt工程', '昇腾部署'],
+                datasets: [{
+                    label: '技能水平',
+                    data: [95, 90, 85, 80, 85, 75, 90, 85],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工作/项目 - 破晓</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">破晓</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="experience.html">工作/项目</a></li>
+                    <li><a href="skills.html">技能</a></li>
+                    <li><a href="contact.html">联系</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="experience">
+        <div class="container">
+            <h1>工作/项目经历</h1>
+            
+            <h2>工作经验</h2>
+            <div class="experience-items">
+                <div class="experience-item">
+                    <h3>上海科之锐人才咨询有限公司（派遣至华为技术有限公司）</h3>
+                    <p class="period">2024-12 ~ 至今</p>
+                    <p class="position">软件开发工程师</p>
+                    <ul class="responsibilities">
+                        <li>负责AI 产品开发与技术栈预研 ---- 开发nl2sql系统、运维自动化智能体等</li>
+                        <li>负责大模型分布式训练并行策略优化与参数调优 ---- 当月节省58万卡时冗余算力</li>
+                        <li>负责AI 算力运营平台需求开发</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>深圳市迈曦软件有限公司</h3>
+                    <p class="period">2024-07 ~ 2024-09</p>
+                    <p class="position">软件开发工程师</p>
+                    <ul class="responsibilities">
+                        <li>负责产品 C++ 模块开发与功能迭代</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>项目经验</h2>
+            <div class="project-items">
+                <div class="project-item">
+                    <h3>模型并行参数寻优工具迭代</h3>
+                    <p class="period">2024-12 ~ 至今</p>
+                    <p class="role">核心开发者/工程化负责人</p>
+                    <p class="tech-stack">技术栈：Python、Pytorch、Megatron、Mindspeed-LLM</p>
+                    <ul class="work-content">
+                        <li>负责自研自动化并行策略寻优工具的工程化重构与落地推广，覆盖 Qwen、Llama 等主流大模型</li>
+                        <li>实现并行参数智能调优，有效提升大规模训练效率，降低算力成本与人工调参门槛</li>
+                        <li>对现有工具进行模块化拆分，通过抽象父类封装公共逻辑，实现多版本训练框架的兼容管理</li>
+                        <li>优化工具性能与资源占用，完成生产环境上线与稳定性保障，支撑高频训练任务的自动化调参</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <h3>大模型 NL2SQL 自助查询与昇腾平台模型部署</h3>
+                    <p class="period">2025-03 ~ 2025-10</p>
+                    <p class="role">核心开发工程师</p>
+                    <p class="tech-stack">技术栈：Python、vanna、MySQL、vllm-ascend、Linux、Docker、Ascend-CANN</p>
+                    <ul class="work-content">
+                        <li>基于 vanna 框架完成大模型 SQL 专项微调，实现自然语言到 SQL 的自动转换与数据图表生成</li>
+                        <li>在 Linux 环境下基于 Docker 构建多版本 Ascend-CANN 基础镜像，实现环境隔离与快速分发</li>
+                        <li>定制 vllm-ascend 推理镜像，完成 Qwen2.5-32B、DeepSeek-V3-671B 等大模型在昇腾平台的部署与推理调优</li>
+                        <li>基于 FastAPI 搭建标准化的后端 API 服务，封装 NL2SQL 查询、图表生成、结果返回等核心能力</li>
+                    </ul>
+                    <a href="nl2sql-project.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">查看项目演示</a>
+                </div>
+                <div class="project-item">
+                    <h3>运维自动化多智能体协同系统</h3>
+                    <p class="period">2025-06 ~ 2025-12</p>
+                    <p class="role">核心开发工程师</p>
+                    <p class="tech-stack">技术栈：LangChain、LangGraph、FastMCP、Manus、WebSocket、Prompt Engineering</p>
+                    <ul class="work-content">
+                        <li>基于 LangChain 构建标准化运维检查智能体，对接内部大模型与运维 API，自动完成设备巡检、指标校验等标准化任务</li>
+                        <li>基于 LangGraph 设计 "计划者 - 管理者 - 执行者" 多角色架构，实现任务拆解、状态流转与记忆持久化</li>
+                        <li>采用大模型做任务拆解与规划、小模型做执行的路由策略，平衡准确率、执行速度与算力成本</li>
+                        <li>接入 WebSocket 实现任务进度实时推送与用户中途干预，解决长时等待无感知问题</li>
+                    </ul>
+                    <a href="network-inspect-chat.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">查看项目演示</a>
+                </div>
+                <div class="project-item">
+                    <h3>ELB智能运维助手</h3>
+                    <p class="period">2025-09 ~ 2025-11</p>
+                    <p class="role">核心开发工程师</p>
+                    <p class="tech-stack">技术栈：Python、Gradio、requests、大模型MCP解析</p>
+                    <ul class="work-content">
+                        <li>基于大模型和MCP工具调用，开发ELB智能运维助手，实现通过自然语言指令操作ELB资源</li>
+                        <li>使用 Gradio 构建内网Web对话界面，提供直观的用户交互体验</li>
+                        <li>通过 requests 库对接企业内部API，实现ELB资源的增删改查操作</li>
+                        <li>在公司内部虚拟机部署，打通企业内网访问，确保系统的安全性和稳定性</li>
+                    </ul>
+                    <a href="elb-project.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">查看项目演示</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>破晓</h3>
+                    <p>大模型应用开发工程师</p>
+                    <p>深圳、广州</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-phone"></i> 18390032814</p>
+                    <p><i class="fas fa-envelope"></i> lilh99@163.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 破晓个人网站. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
